@@ -1,0 +1,163 @@
+﻿<Window x:Class="ShapeDrawer.Views.Recent"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:ShapeDrawer.ViewModels"
+        mc:Ignorable="d"
+        Title="StartUp" Height="450" Width="800" WindowStartupLocation="CenterScreen"
+        Background="#FFE3F2FD">
+    <!-- Light Blue Background -->
+    <!--<Window.DataContext>
+        <vm:RecentViewModel />
+    </Window.DataContext>-->
+
+    <!-- Main Grid Layout -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title -->
+        <Label Grid.Row="0" Content="Recent Projects" FontSize="24" FontWeight="Bold" 
+               HorizontalAlignment="Center" Margin="10" Foreground="#FF1976D2" Background="Transparent"/>
+        <!-- Dark Blue Text -->
+
+        <!-- List of Recent Projects in a WrapPanel -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="10">
+            <ListBox ItemsSource="{Binding RecentProjects}" SelectedItem="{Binding SelectedProject, Mode=TwoWay}"
+         Background="Transparent" BorderThickness="0" Padding="0">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <!-- Project Card -->
+                        <Border Width="150" Height="150" CornerRadius="10" Margin="10"
+                    Padding="10" Cursor="Hand" Background="#FF90CAF9">
+                            <!-- Light Blue Background -->
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="5" Opacity="0.5" />
+                            </Border.Effect>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="Bold" 
+                               Foreground="#FF1976D2" TextWrapping="Wrap" TextAlignment="Center" />
+                                <!-- Dark Blue Text -->
+                                <TextBlock Text="{Binding UserId, StringFormat='User ID: {0}'}" 
+                               FontSize="12" Foreground="#FF1976D2" TextAlignment="Center" Margin="0,5,0,0" />
+                                <!-- Dark Blue Text -->
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="10" Padding="10" Margin="10">
+                                        <ContentPresenter />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="Margin" Value="0" />
+                        <Setter Property="Background" Value="#FF90CAF9" />
+                        <!-- Light Blue Background -->
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                        <Style.Triggers>
+                            <!-- Hover Effect -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF64B5F6" />
+                                <!-- Lighter Blue -->
+                            </Trigger>
+                            <!-- Selection Effect -->
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#FF64B5F6" />
+                                <!-- Lighter Blue -->
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+        </ScrollViewer>
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button Content="Open" Command="{Binding OpenProjectCommand}" Width="120" Margin="5" 
+                    Foreground="White" FontWeight="Bold" Padding="10 5"
+                    BorderThickness="0" Cursor="Hand" Background="#FF2196F3">
+                <!-- Blue Background -->
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            CornerRadius="3" Padding="{TemplateBinding Padding}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="OverridesDefaultStyle" Value="True"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Style.Triggers>
+                            <!-- Hover Effect -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF1976D2" />
+                                <!-- Darker Blue -->
+                            </Trigger>
+                            <!-- Pressed Effect -->
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#FF1976D2" />
+                                <!-- Darker Blue -->
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Content="New Project" Command="{Binding NewProjectCommand}" Width="120" Margin="5" 
+                    Foreground="White" FontWeight="Bold" Padding="10 5"
+                    BorderThickness="0" Cursor="Hand" Background="#FF2196F3">
+                <!-- Blue Background -->
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            CornerRadius="3" Padding="{TemplateBinding Padding}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="OverridesDefaultStyle" Value="True"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Style.Triggers>
+                            <!-- Hover Effect -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF1976D2" />
+                                <!-- Darker Blue -->
+                            </Trigger>
+                            <!-- Pressed Effect -->
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#FF1976D2" />
+                                <!-- Darker Blue -->
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>   
+    </Grid>
+</Window>

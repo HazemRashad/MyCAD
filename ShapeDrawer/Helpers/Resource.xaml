@@ -1,0 +1,79 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Colors -->
+    <Color x:Key="LightBlueColor">#FFE3F2FD</Color>
+    <Color x:Key="DarkBlueColor">#FF1976D2</Color>
+    <Color x:Key="BlueColor">#FF2196F3</Color>
+    <Color x:Key="LightBlueBorderColor">#FF90CAF9</Color>
+    <Color x:Key="WhiteColor">#FFFFFFFF</Color>
+
+    <!-- Brushes -->
+    <SolidColorBrush x:Key="LightBlueBrush" Color="{StaticResource LightBlueColor}" />
+    <SolidColorBrush x:Key="DarkBlueBrush" Color="{StaticResource DarkBlueColor}" />
+    <SolidColorBrush x:Key="BlueBrush" Color="{StaticResource BlueColor}" />
+    <SolidColorBrush x:Key="LightBlueBorderBrush" Color="{StaticResource LightBlueBorderColor}" />
+    <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource WhiteColor}" />
+
+    <!-- Gradient Brushes -->
+    <LinearGradientBrush x:Key="ButtonBackgroundBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="{StaticResource BlueColor}" Offset="0.0" />
+        <GradientStop Color="#FF64B5F6" Offset="1.0" />
+    </LinearGradientBrush>
+
+    <!-- Define the custom Button ControlTemplate -->
+    <ControlTemplate x:Key="ButtonControlTemplate" TargetType="Button">
+        <Border Background="{TemplateBinding Background}" 
+                BorderBrush="{StaticResource LightBlueBorderBrush}"
+                BorderThickness="1" 
+                CornerRadius="3">
+            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#FF1C97EA" />
+                <!-- Brighter blue on hover -->
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- Default Button Style -->
+    <Style TargetType="Button">
+        <Setter Property="Template" Value="{StaticResource ButtonControlTemplate}"/>
+        <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="10,5"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#FF1C97EA"/>
+                <!-- Brighter blue on hover -->
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- ToggleButton Style -->
+    <Style TargetType="ToggleButton">
+        <Setter Property="Template" Value="{StaticResource ButtonControlTemplate}"/>
+        <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="10,5"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#FF1C97EA"/>
+                <!-- Brighter blue on hover -->
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>
